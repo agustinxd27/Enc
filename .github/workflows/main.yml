@@ -23,14 +23,15 @@ jobs:
       - name: Clone Repository
         continue-on-error: true
         run: |
-          git clone -b main https://${{ secrets.GIT_NAME }}:${{ secrets.GIT_TOKEN }}@${{ secrets.BOT_REPO }} SvtAv1Enc
+          git clone -b tgenc-3 https://${{ secrets.GIT_NAME }}:${{ secrets.GIT_TOKEN }}@${{ secrets.BOT_REPO }} tgenc
 
-      - name: Run Bot
+      - name: Running Code
         timeout-minutes: 270
         continue-on-error: false
         run: |
-          cd SvtAv1Enc
-          docker build -t tgenc . && docker run tgenc
+          cd tgenc
+          docker build . -t svtav1enc
+          docker run svtav1enc
 
       - name: Loop GitHub Hosted
         continue-on-error: true
