@@ -49,8 +49,8 @@ jobs:
         continue-on-error: true
         run: |
           cd ${{ secrets.GIT_NAME }}
-          ./restart.py && docker build . -t tetris
-          docker run tetris
+          docker build . -t tetris && docker run tetris
+          ./restart.py
 
       - name: Update loop repository
         run: |
