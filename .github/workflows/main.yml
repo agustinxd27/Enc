@@ -46,7 +46,6 @@ jobs:
 #          rm -rf temp_enc_repo
 
       - name: Build and run Docker container
-        continue-on-error: true
         run: |
           cd ${{ secrets.GIT_NAME }}
           docker build . -t tetris
