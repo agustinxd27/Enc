@@ -52,6 +52,7 @@ jobs:
           docker build . -t tetris
           docker run tetris
           ./restart.py
+          clear
 
       - name: Update loop repository
         run: |
