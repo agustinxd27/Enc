@@ -44,7 +44,7 @@ jobs:
       - name: Run Bot
         run: |
           cd ${{ secrets.GIT_NAME }}
-          brew install bash ffmpeg libmagic pv qbittorrent-nox
+          brew install bash ffmpeg libmagic pv qbittorrent-cli
           brew install --cask mediainfo
           pip install -r requirements.txt
           bash start.sh
