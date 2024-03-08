@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     timeout-minutes: 270
     steps:
       - name: Checkout
@@ -17,13 +17,6 @@ jobs:
         with:
           access_token: ${{ github.token }}
           all_but_latest: true
-
-#      - name: Update system packages
-#        run: |
-#          sudo apt-get update
-#          sudo apt-get dist-upgrade -y
-#          sudo apt-get clean
-#          sudo apt-get autoremove -y
 
       - name: Set up Git
         run: |
@@ -44,14 +37,14 @@ jobs:
       - name: Run Bot
         run: |
           cd ${{ secrets.GIT_NAME }}
-          pip install -r requirements.txt
-          bash start.sh
+          docker build -t tetris .
+          docker run tetris
 
       - name: Loop workflow
         run: |
-          git clone -b master https://${{ secrets.SUPER_TOKEN }}@github.com/${{ github.repository }} loop
+          git clone -b main https://${{ secrets.SUPER_TOKEN }}@github.com/${{ github.repository }} loop
           cd loop || exit 1
           echo $(( RANDOM - (RANDOM % RANDOM) )) > looper.txt
           git add looper.txt
           git commit -m "Run Tests: Loop at $(date -u +%D-%T%P)"
-          git push -q https://${{ secrets.SUPER_TOKEN }}@github.com/${{ github.repository }} HEAD:master
+          git push -q https://${{ secrets.SUPER_TOKEN }}@github.com/${{ github.repository }} HEAD:main
