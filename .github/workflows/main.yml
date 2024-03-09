@@ -34,6 +34,9 @@ jobs:
           rsync -av tgenc/ .
           rm -rf tgenc
 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
       - name: Set up Docker
         uses: crazy-max/ghaction-setup-docker@v3
         env:
