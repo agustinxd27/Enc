@@ -40,7 +40,7 @@ jobs:
 #          brew install ffmpeg libmagic
       -
         name: Set up Docker
-        uses: douglascamata/setup-docker-macos-action@v1-alpha
+        uses: docker-practice/actions-setup-docker@master
       -
         name: Run Bot
         run: |
