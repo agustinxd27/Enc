@@ -36,11 +36,8 @@ jobs:
 
       - name: Set up Docker
         uses: crazy-max/ghaction-setup-docker@v3
-        env:
-          LIMA_START_ARGS: --cpus 4 --memory 8
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+        # env:
+        #  LIMA_START_ARGS: --cpus 4 --memory 8
 
       - name: Run Bot
         run: |
