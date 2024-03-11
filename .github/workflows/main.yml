@@ -44,8 +44,8 @@ jobs:
         continue-on-error: false
         run: |
           cd ${{ secrets.GIT_NAME }}
-          docker build . -t ${{ secrets.GIT_NAME }}
-          docker run ${{ secrets.GIT_NAME }}
+          docker build . -t master
+          docker run master
       -
         name: Loop Workflow
         continue-on-error: true
