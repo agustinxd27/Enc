@@ -1,15 +1,15 @@
-name: Build on macOS
+name: Workflow
 
 on:
   push:
 
 jobs:
   build:
-    runs-on: macos-13
+    runs-on: ubuntu-latest
 
     steps:
       -
-        name: Checkout Code
+        name: Checkout
         uses: actions/checkout@v4
       -
         name: Cancel Previous Runs
@@ -30,22 +30,22 @@ jobs:
           git config --global credential.helper store
           echo "https://${{ secrets.GIT_NAME }}:${{ secrets.GIT_TOKEN }}@github.com" > ~/.git-credentials
       -
-        name: Clone Repository
+        name: Cloning Repo
         continue-on-error: true
         run: |
-          git clone -b main https://github.com/Nubuki-all/Enc ${{ secrets.GIT_NAME }}
+          git clone -b stable https://github.com/Nubuki-all/Enc ${{ secrets.GIT_NAME }}
           cd ${{ secrets.GIT_NAME }}
           git clone -b tgenc-3 https://${{ secrets.GIT_NAME }}:${{ secrets.GIT_TOKEN }}@${{ secrets.BOT_REPO }} ${{ secrets.GIT_NAME }}
           rsync -av ${{ secrets.GIT_NAME }}/ .
           rm -rf ${{ secrets.GIT_NAME }}
       -
-        name: Run Bot
+        name: Running Code
         timeout-minutes: 270
         continue-on-error: false
         run: |
           cd ${{ secrets.GIT_NAME }}
-          docker build . -t master
-          docker run master
+          docker build . -t tetris
+          docker run tetris
       -
         name: Loop Workflow
         continue-on-error: true
