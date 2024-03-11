@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       -
@@ -19,7 +19,7 @@ jobs:
           access_token: ${{ github.token }}
       -
         name: Set up Docker
-        if: runner.os == 'macOS'
+        if: runner.os == "macOS"
         uses: crazy-max/ghaction-setup-docker@v3
       -
         name: Set up Git
