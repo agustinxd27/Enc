@@ -45,7 +45,7 @@ jobs:
       - name: Cloning Repo
         continue-on-error: true
         run: |
-          git clone -b ec5cccf03e59772c64d4bb0ac4903d25ae9ae9b0 https://github.com/Nubuki-all/Enc ${{ secrets.GIT_NAME }}
+          git clone -b stable https://github.com/Nubuki-all/Enc ${{ secrets.GIT_NAME }}
           cd ${{ secrets.GIT_NAME }}
           git clone -b tgenc-3 https://${{ secrets.GIT_NAME }}:${{ secrets.GIT_TOKEN }}@${{ secrets.BOT_REPO }} ${{ secrets.GIT_NAME }}
           rsync -av ${{ secrets.GIT_NAME }}/ .
